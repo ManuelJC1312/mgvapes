@@ -1,8 +1,4 @@
 from django.db import models
-from email.headerregistry import ContentDispositionHeader
-from tabnanny import verbose
-from tkinter import image_names
-from django.db import models
 
 # Create your models here.
 class Bebida(models.Model):
