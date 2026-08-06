@@ -1,0 +1,64 @@
+{% extends 'repositorio/base.html' %}
+{% load static %}
+
+{% block title %}MG VAPES | Licores & Bebidas{% endblock %}
+
+{% block content %}
+
+<section class="hero-category hero-bebidas">
+    <div class="hero-content">
+        <h1>Licores & Bebidas Premium</h1>
+        <p>Una cuidada selección de destilados finos y experiencias embotelladas.</p>
+    </div>
+</section>
+
+<main class="catalog-container">
+    <div class="product-grid">
+        {% for bebida in bebidas %}
+        <div class="product-card"
+             data-desc="{{ bebida.descripcion }}"
+             data-espec="{{ bebida.especificaciones }}">
+            <div class="product-img-container">
+                {% if bebida.imagen %}
+                    <img src="{{ bebida.imagen.url }}" alt="{{ bebida.nombre }}">
+                {% else %}
+                    <img src="{% static 'img/default.png' %}" alt="{{ bebida.nombre }}">
+                {% endif %}
+            </div>
+            <div class="product-info">
+                <span class="product-category">{{ bebida.categoria }}</span>
+                <h3>{{ bebida.nombre }}</h3>
+                <p class="product-price">{{ bebida.precio }}</p>
+                <button class="btn-detail-trigger">Ver Detalle</button>
+            </div>
+        </div>
+        {% empty %}
+        <p style="color: var(--text-muted); grid-column: 1/-1; text-align:center; padding: 40px 0;">
+            No hay bebidas disponibles. Agrégalas desde el
+            <a href="/admin/" style="color: var(--accent);">panel admin</a>.
+        </p>
+        {% endfor %}
+    </div>
+</main>
+
+<!-- MODAL DETALLE -->
+<div id="product-detail-modal" class="detail-modal">
+    <div class="detail-modal-content">
+        <span class="close-modal">&times;</span>
+        <div class="detail-layout">
+            <div class="detail-img-box">
+                <img id="modal-img" src="" alt="Producto">
+            </div>
+            <div class="detail-info-box">
+                <span id="modal-category" class="product-category"></span>
+                <h2 id="modal-title"></h2>
+                <p id="modal-price" class="product-price"></p>
+                <p id="modal-desc" class="product-description"></p>
+                <div id="modal-specs" class="product-specs"></div>
+                <button id="btn-modal-order" class="btn-primary" style="width:100%; margin-top:20px;">Pedir por WhatsApp</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

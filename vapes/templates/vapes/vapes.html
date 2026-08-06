@@ -1,0 +1,62 @@
+{% extends 'repositorio/base.html' %}
+{% load static %}
+{% block title %}MG VAPES | Vapes{% endblock %}
+{% block content %}
+
+<section class="hero-category hero-vapes">
+    <div class="hero-content">
+        <h1>Vaporizadores & Dispositivos</h1>
+        <p>Tecnología, diseño compacto y los perfiles de sabor más intensos del mercado.</p>
+    </div>
+</section>
+
+<main class="catalog-container">
+    <div class="product-grid">
+        {% for vape in vapes %}
+        <div class="product-card"
+             data-desc="{{ vape.descripcion }}"
+             data-espec="{{ vape.especificaciones }}">
+            <div class="product-img-container">
+                {% if vape.imagen %}
+                    <img src="{{ vape.imagen.url }}" alt="{{ vape.nombre }}">
+                {% else %}
+                    <img src="{% static 'img/default.png' %}" alt="{{ vape.nombre }}">
+                {% endif %}
+            </div>
+            <div class="product-info">
+                <span class="product-category">{{ vape.categoria }}</span>
+                <h3>{{ vape.nombre }}</h3>
+                <p class="product-price">{{ vape.precio }}</p>
+                <button class="btn-detail-trigger">Ver Detalle</button>
+            </div>
+        </div>
+        {% empty %}
+        <p style="color: var(--text-muted); grid-column: 1/-1; text-align:center; padding: 40px 0;">
+            No hay vapes disponibles. Agrégalos desde el
+            <a href="/admin/" style="color: var(--accent);">panel admin</a>.
+        </p>
+        {% endfor %}
+    </div>
+</main>
+
+<!-- MODAL DETALLE -->
+<div id="product-detail-modal" class="detail-modal">
+    <div class="detail-modal-content">
+        <span class="close-modal">&times;</span>
+        <div class="detail-layout">
+            <div class="detail-img-box">
+                <img id="modal-img" src="" alt="Producto">
+            </div>
+            <div class="detail-info-box">
+                <span id="modal-category" class="product-category"></span>
+                <h2 id="modal-title"></h2>
+                <p id="modal-price" class="product-price"></p>
+                <p id="modal-desc" class="product-description"></p>
+                <div id="modal-specs" class="product-specs"></div>
+                <button id="btn-modal-order" class="btn-primary" style="width:100%; margin-top:20px;">Pedir por WhatsApp</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

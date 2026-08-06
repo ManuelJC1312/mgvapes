@@ -1,0 +1,32 @@
+{% extends 'repositorio/base.html' %}
+{% block title %} MG VAPES | Inicio{% endblock %}
+{% block content %}
+
+<section class="hero-home">
+    <div class="hero-content">
+        <h1>MG VAPES</h1>
+        <p>Un espacio exclusivo diseñado para los gustos más exigentes. Explora nuestras colecciones premium.</p>
+    </div>
+</section>
+
+<main class="categories-selection">
+    <h2 class="section-title">Explora Nuestras Categorías</h2>
+    <div class="category-grid-links">
+        <a href="{% url 'bebidas' %}" class="category-box box-bebidas">
+            <div class="box-overlay">
+                <h3>Licores</h3>
+                <p>Destilados premium, ediciones especiales y etiquetas del mundo.</p>
+                <span class="box-btn">Ver Catálogo</span>
+            </div>
+        </a>
+        <a href="{% url 'vapes' %}" class="category-box box-vapes">
+            <div class="box-overlay">
+                <h3>Vapes</h3>
+                <p>Dispositivos de última generación, pods desechables y sabores exclusivos.</p>
+                <span class="box-btn">Ver Catálogo</span>
+            </div>
+        </a>
+    </div>
+</main>
+
+{% endblock %}

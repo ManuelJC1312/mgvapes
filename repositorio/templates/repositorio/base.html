@@ -1,0 +1,54 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}MG VAPES{% endblock %}</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body>
+
+    <div id="age-verification-modal" class="age-modal">
+        <div class="age-modal-content">
+            <h2>MG VAPES</h2>
+            <p>Este sitio web contiene productos destinados exclusivamente a personas mayores de edad (bebidas alcohólicas y vaporizadores).</p>
+            <p class="age-question">¿Eres mayor de 18 años?</p>
+            <div class="age-buttons">
+                <button id="btn-age-yes" class="btn-primary">Sí, soy mayor</button>
+                <button id="btn-age-no" class="btn-secondary">No, salir</button>
+            </div>
+        </div>
+    </div>
+
+    <header class="navbar">
+        <a href="{% url 'home' %}" class="logo">MG VAPES</a>
+        <nav class="nav-menu">
+            <a href="{% url 'home' %}" {% if request.resolver_match.url_name == 'home' %}class="active"{% endif %}>Inicio</a>
+            <a href="{% url 'bebidas' %}" {% if request.resolver_match.url_name == 'bebidas' %}class="active"{% endif %}>Bebidas</a>
+            <a href="{% url 'vapes' %}" {% if request.resolver_match.url_name == 'vapes' %}class="active"{% endif %}>Vapes</a>
+            <a href="{% url 'nosotros' %}" {% if request.resolver_match.url_name == 'nosotros' %}class="active"{% endif %}>Nosotros</a>
+            <a href="{% url 'contacto' %}" {% if request.resolver_match.url_name == 'contacto' %}class="active"{% endif %}>Contacto</a>
+        </nav>
+        <div class="nav-actions">
+            <span class="age-badge">+18</span>
+        </div>
+    </header>
+
+    {% block content %}
+    {% endblock %}
+
+    <a href="https://w.app/1kcbwp" id="whatsapp-floating-btn" class="whatsapp-btn" target="_blank">
+        <svg viewBox="0 0 32 32" class="whatsapp-icon">
+            <path d="M16 2a14 14 0 0 0-12.08 21.06L2 29l6.14-1.61A14 14 0 1 0 16 2zm7.55 19.9a2.93 2.93 0 0 1-2 2.1c-.55.12-1.28.23-3.71-.78a15.35 15.35 0 0 1-6.41-5.64 6.88 6.88 0 0 1-1.42-3.66 3.86 3.86 0 0 1 1.22-2.88l.52-.52a.63.63 0 0 1 .45-.19h.34a1.05 1.05 0 0 1 .74.43l1.16 2.78a.65.65 0 0 1 0 .61 2.37 2.37 0 0 1-.41.56l-.42.49a.38.38 0 0 0-.08.43 11 11 0 0 0 2.27 2.82 10.6 10.6 0 0 0 3.32 2l.46-.08a.82.82 0 0 0 .4-.33c.27-.37.74-1 .94-1.31a.53.53 0 0 1 .58-.2h.86l2.84 1.4a.79.79 0 0 1 .47.53c0 .64-.04 1.83-.58 2.37z" fill="#fff"/>
+        </svg>
+    </a>
+
+    <footer class="footer">
+        <p>&copy; 2026 MG VAPES. Proyecto Empresarial Universitario.</p>
+        <p class="legal">Solo para mayores de 18 años. El exceso de alcohol es perjudicial para la salud. Prohibida la venta a menores de edad.</p>
+    </footer>
+
+    <script src="{% static 'js/script.js' %}"></script>
+</body>
+</html>

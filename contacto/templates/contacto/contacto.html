@@ -1,0 +1,55 @@
+{% extends 'repositorio/base.html' %}
+{% load static %}
+
+{% block title %}MG VAPES | Contacto{% endblock %}
+
+{% block content %}
+
+<section class="hero-contacto">
+    <div class="hero-content">
+        <h1>CONTACTO</h1>
+        <p>Estamos para atenderte de forma discreta y personalizada.</p>
+    </div>
+</section>
+
+<div class="contacto-section">
+    <div class="contacto-card">
+        <h2>Envíanos un mensaje</h2>
+        <p>También puedes contactarnos directamente por WhatsApp para una respuesta más rápida.</p>
+
+        {% if enviado %}
+        <div style="background:#1a1a1a; border:1px solid var(--accent); border-radius:4px; padding:15px; margin-bottom:20px; color: var(--accent); text-align:center;">
+            ✓ Mensaje enviado correctamente. Te contactaremos pronto.
+        </div>
+        {% endif %}
+
+        <form method="POST">
+            {% csrf_token %}
+            <div class="form-group">
+                <label>Nombre</label>
+                <input type="text" name="nombre" placeholder="Tu nombre completo" required>
+            </div>
+            <div class="form-group">
+                <label>Correo electrónico</label>
+                <input type="email" name="email" placeholder="tucorreo@email.com" required>
+            </div>
+            <div class="form-group">
+                <label>Asunto</label>
+                <input type="text" name="asunto" placeholder="¿En qué te podemos ayudar?" required>
+            </div>
+            <div class="form-group">
+                <label>Mensaje</label>
+                <textarea name="mensaje" placeholder="Escribe tu mensaje aquí..." required></textarea>
+            </div>
+            <button type="submit" class="btn-primary" style="width:100%;">Enviar Mensaje</button>
+        </form>
+
+        <div class="contacto-info">
+            <p>📱 WhatsApp: <span>+57 300 233 9324</span></p>
+            <p>📧 Email: <span>mgvapes@gmail.com</span></p>
+            <p>🕐 Horario: <span>Lunes a Sábado, 10am – 8pm</span></p>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
