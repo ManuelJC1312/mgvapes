@@ -4,7 +4,7 @@ services:
     env: python
     plan: free
     buildCommand: pip install -r requirements.txt && python manage.py collectstatic --noinput
-    startCommand: python manage.py migrate --noinput && gunicorn mgVapes.wsgi
+    startCommand: python run_migrations.py && gunicorn mgVapes.wsgi
     envVars:
       - key: PYTHON_VERSION
         value: 3.11.9
